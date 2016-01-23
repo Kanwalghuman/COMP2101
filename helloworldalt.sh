@@ -5,5 +5,7 @@
 
 
 cat <<end
-	Hello World!
+Hello World!
 end
+
+exit 0
