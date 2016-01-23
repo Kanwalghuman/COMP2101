@@ -7,5 +7,3 @@
 cat <<end
 Hello World!
 end
-
-exit 0
