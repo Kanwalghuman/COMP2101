@@ -3,7 +3,7 @@
 # This script will bacup the ~/bin directory to ~/backups using rsync
 
 
-rsync -av --delete ~/bin ~/backups
+rsync -avHAXS --delete ~/bin ~/backups
 
 if [ $? == 0 ]; then
 	echo -e "\n\nBACKUP SUCCESSFUL"
