@@ -4,7 +4,7 @@
 # Michael Sartori - Jan 22 2016
 
 
-numberOfFiles=`ls -l | grep ^- | wc -l`
+numberOfFiles=`find ~/Pictures -type f | wc -l`
 diskUsage=`du -h ~/Pictures | awk '{print $1}'`
 
 
