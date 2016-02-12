@@ -2,7 +2,7 @@
 
 # this script will display a summary of the number of running processes, grouped by username
 # it will also show the specific processes, if any, being run by the user 'nobody'
-
+# Michael Sartori - Feb 13, 2016
 
 echo -e "Here are the number of processes being run by each user:\n"
 ps -hauxOu | awk '{print $1}' | uniq -c

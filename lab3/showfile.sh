@@ -2,7 +2,7 @@
 
 # this script will present the user with a menu, showing the names of the files in their home directory
 # the user will be asked to choose a file and it will then be displayed on the screen
-
+# Michael Sartori - Feb 13, 2016
 
 filenames=(`ls -p ~ | grep -v /`)
 
