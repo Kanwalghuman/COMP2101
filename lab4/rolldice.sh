@@ -140,7 +140,7 @@ while [ $# -gt 0 ]; do
 		;;
 	--dice=* )
 		if [ ! "$numdice" ]; then # if [-d|--dice] has not already been used
-			args_numdice '--dice' $(echo "$1" | cut -d'=' -f2)
+			args_numdice '--dice' $(echo "$1" | sed 's/^--dice=//')
 		else
 			badsyntax "duplicate argument -- '--dice'"
 			exit 2
@@ -157,7 +157,7 @@ while [ $# -gt 0 ]; do
 		;;
 	--sides=* )
 		if [ ! "$numsides" ]; then # if [-s|--sides] has not already been used
-			args_numsides '--sides' $(echo $1 | cut -d'=' -f2)
+			args_numsides '--sides' $(echo $1 | sed 's/^--sides=//')
 		else
 			badsyntax "duplicate argument -- '--sides'"
 			exit 2

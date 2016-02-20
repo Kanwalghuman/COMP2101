@@ -34,10 +34,11 @@ get_filepath() {
 # display command help
 cmdhelp() {
 	cat <<-EOF
-		Usage: $filename [OPTIONS...] [SECONDS]
+		Usage: $filename [OPTIONS...] SECONDS
 		Countdown timer
                 
-		Options:
+
+		Optional Arguments:
 
 		-i, --interval=VALUE	interval (in seconds) to count by [default=1]
 
@@ -168,7 +169,7 @@ while [ $# -gt 0 ]; do
 		;;
 	--interval=*)
 		if [ ! "$interval" ]; then  # if the interval has not already been set
-			args_interval "--interval" "$(echo "$1" | cut -d'=' -f2)"
+			args_interval "--interval" "$(echo "$1" | sed 's/^--interval=//')"
 		else
 			error-message "duplicate argument -- '--interval'"
 			exit 2

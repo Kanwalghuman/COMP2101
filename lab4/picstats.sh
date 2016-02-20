@@ -79,7 +79,7 @@ while [ $# -gt 0 ]; do
 		;;
 	--count=* )
 		if [ ! "$count" ]; then
-			args_count '--count' $(echo "$1" | cut -d'=' -f2)
+			args_count '--count' $(echo "$1" | sed 's/^--count=//')
 			shift
 		else
 			error-message "duplicate argument -- '--count'"
