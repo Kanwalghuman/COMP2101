@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # This script will display the disk usage for the files in the ~/Pictures directory and also show the three largest files
+# The user has the option to specify at the command line a different directory and/or a different number of files to show
+#
 # Michael Sartori - Jan 22 2016
+
 
 
 # get filename of this script
