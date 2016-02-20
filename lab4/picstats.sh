@@ -19,7 +19,7 @@ cmdhelp() {
 	cat <<-EOF
 		Usage: $filename [OPTION...] [DIRECTORY]
 		Show total disk usage and largest files in a directory
-		Will use the ~/Picures directory by default
+		Will use the ~/Pictures directory by default
 
 		Optional arguments:
                 
