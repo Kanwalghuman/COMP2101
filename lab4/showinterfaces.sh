@@ -14,7 +14,7 @@ booleanShowGW=false # boolean variable of whether to dispay default route or not
 
 
 # get the filename of this script
-filename=$(basename $0)
+filename=$(basename ${BASH_SOURCE[0]})
 
 
 # display command help

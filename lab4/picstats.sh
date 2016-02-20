@@ -8,7 +8,7 @@
 
 
 # get filename of this script
-filename=$(basename $0)
+filename=$(basename ${BASH_SOURCE[0]})
 
 # set default directory to ~/Pictures
 dir="$HOME/Pictures"
