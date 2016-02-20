@@ -15,7 +15,6 @@ filename=$(basename $0)
 #+ longer by using a function :P
 error-message() {
 	>&2 echo "$filename: $1"	
-	exit $2
 }
 
 
