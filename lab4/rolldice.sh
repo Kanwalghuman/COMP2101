@@ -94,7 +94,7 @@ args_numdice() {
 # evaluate the value given with the [-s|--sides] option,
 #+ assigning to $numsides if valid and passing appropriate
 #+ information to badsyntax() if not
-# script will exit wiith status 2 if invalid value is given
+# script will exit with status 2 if invalid value is given
 args_numsides() {
 	if [[ "$2" =~ ^[[:digit:]][[:digit:]]?$ ]]; then
 		if [[ $2 -ge 4 && $2 -le 20 ]]; then
