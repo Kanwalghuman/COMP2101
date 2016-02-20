@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script will count down to 0 from the specified number of seconds.
-# The user has the option to specify the countdown interval (in secods).
+# The user has the option to specify the countdown interval (in seconds).
 # A SIGINT signal will reset the timer to the inital value.
 # A SIGQUIT signal will exit.
 #
