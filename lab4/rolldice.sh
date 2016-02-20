@@ -3,7 +3,7 @@
 # This script will prompt the user to provide a count from 1 to 5, which will be the number of dice, defaulting to 2.
 # The user will also be prompted for how many sides the dice should have in the range of 4-20 (each will have the same number of sides), defaulting to 6.
 # The script will then roll the virtual dice and display the randomized value of each, along with the sum of the rolls.
-# The user has the option to use the -h/--help switch at the command line, as well was accepting the number of dice and number of sides as command line arguments.
+# The user has the option to use the -h/--help switch at the command line, as well was setting the number of dice and number of sides as command line arguments.
 #
 # Michael Sartori - Feb 19, 2016
 
@@ -55,7 +55,7 @@ prompt() {
 			eval "$4=$REPLY"
 			break
 		else
-			echo -e "\n$REPLY is not a number from $2 to $3. Try again.\n"
+			printf "\n%\n\n" "$REPLY is not a number from $2 to $3. Try again."
 		fi
 	done
 }
@@ -63,14 +63,14 @@ prompt() {
 
 # send the result of the virtual dice roll to STDOUT
 output() {
-	echo -en "\nYou rolled "
+	printf "\n%s " "You rolled"
 	for (( i=1 ; i <= numdice ; i++ )); do
 		roll=$(($RANDOM % $numsides + 1))
-		sum=$(($sum + $roll))
+		let sum+=$roll
 		echo -n "$roll"
-		test $i -lt $numdice && echo -n ","
+		[ $i -lt $numdice ] && echo -n ","
 	done
-	echo -e " for a $sum\n"
+	printf " %s\n\n" "for a $sum"
 }
 
 
@@ -139,7 +139,7 @@ while [ $# -gt 0 ]; do
 		fi
 		;;
 	--dice=* )
-		if [ ! "$numdice" ]; then # if [-d|--dice has not already been used
+		if [ ! "$numdice" ]; then # if [-d|--dice] has not already been used
 			args_numdice '--dice' $(echo "$1" | cut -d'=' -f2)
 		else
 			badsyntax "duplicate argument -- '--dice'"
@@ -174,6 +174,6 @@ done
 
 # prompt user for input using prompt() if [$numdice|$numsides] was not already defined
 #+ at the command line, displaying the results by calling output()
-[ -z "$numdice" ] && prompt "Enter the number of dice to be used [1-5, default 2]: " 1 5 numdice
-[ -z "$numsides" ] && prompt "Enter the number of sides the dice should have [4-20, default 6]: " 4 20 numsides
+[ ! "$numdice" ] && prompt "Enter the number of dice to be used [1-5, default 2]: " '1' '5' 'numdice'
+[ ! "$numsides" ] && prompt "Enter the number of sides the dice should have [4-20, default 6]: " '4' '20' 'numsides'
 output

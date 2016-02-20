@@ -41,8 +41,9 @@ error-message() {
 }
 
 
+# for processing the [-c|--count] command line option
 args_count() {		
-	if [[ $2 -gt 0 ]] 2>/dev/null; then
+	if [ $2 -gt 0 ] 2>/dev/null; then
 		count=$2
 	else
 		error-message "invalid argument -- '$1'"
