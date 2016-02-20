@@ -7,14 +7,10 @@
 
 
 
-# get the filename of this script
-filename=$(basename $0)
-
-
 # an interesting example of actually making a script
 #+ longer by using a function :P
 error-message() {
-	>&2 echo "$filename: $1"	
+	>&2 echo "$(basename ${BASH_SOURCE[0]}): $1"	
 }
 
 
