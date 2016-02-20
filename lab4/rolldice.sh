@@ -113,6 +113,12 @@ args_numsides() {
 }
 
 
+
+#######
+# MAIN
+#######
+
+
 # evaluate arguments passed from command line,
 #+ looping until all arguments have been processed or
 #+ an invalid argument is detected

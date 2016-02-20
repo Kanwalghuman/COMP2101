@@ -18,6 +18,12 @@ error-message() {
 }
 
 
+
+#######
+# MAIN
+#######
+
+
 # loop through all of the command line args and send
 #+ them to STDERR by using error-message()
 while [ $# -gt 0 ]; do 
