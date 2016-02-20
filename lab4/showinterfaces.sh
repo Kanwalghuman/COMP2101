@@ -49,7 +49,6 @@ error-message() {
 mask2cidr() {
         nbits=0
         IFS=.
-    
         for dec in $1; do
                 case $dec in
                         0) ;;
@@ -61,10 +60,11 @@ mask2cidr() {
                         252) let nbits+=6 ;;
                         254) let nbits+=7 ;;
                         255) let nbits+=8 ;;
-                        *) >&2 echo "mask2cidr(): $dec not recognized"; exit 1 ;;
+                        *) error-message "mask2cidr(): $dec not recognized"; exit 1 ;;
                 esac
         done
         echo "/$nbits"
+	unset nbits
 }
 
 
@@ -78,6 +78,8 @@ showaddr() {
 			echo "${interfaces[i]} has an IPv4 address of $addr"
 			unset line
 			unset addr
+		else
+			echo "${interfaces[i]} does not have an IPv4 address"
 		fi
 	done
 }
@@ -86,7 +88,9 @@ showaddr() {
 # parse the route -n command to retrieve and display the default gateway
 showgw() {
 	gw=$(route -n | grep ^0.0.0.0 | awk '{print $2}')
-	echo "The IPv4 default route is $gw"
+	[ $gw ] && echo "The IPv4 default route is $gw" ||
+		echo "There is no IPv4 defualt route"
+	unset gw
 }
 
 
