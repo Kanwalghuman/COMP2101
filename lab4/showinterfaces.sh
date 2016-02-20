@@ -94,13 +94,6 @@ showgw() {
 }
 
 
-# assign list of interface names to interfaces[]
-findints() {
-	for i in $(ifconfig | egrep '^[[:alpha:]]' | awk '{print $1}'); do
-		interfaces+=("$i")
-	done
-}
-
 
 
 #######
@@ -140,8 +133,10 @@ while [ $# -gt 0 ]; do
 done
 
 
-# run findints() if no interfaces were specified on the command line
-[ ${#interfaces[@]} -eq 0 ] && findints 
+# assign list of interface names to interfaces[] if no interfaces
+#+ were specified on the command line
+[ ${#interfaces[@]} -eq 0 ] &&
+	for i in $(ifconfig | egrep '^[[:alpha:]]' | awk '{print $1}'); do interfaces+=("$i"); done
 
 # display the addresses
 showaddr
