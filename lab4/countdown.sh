@@ -9,9 +9,26 @@
 
 
 
-# get the filename and path of this script
+# get the filename of this script
 filename=$(basename ${BASH_SOURCE[0]})
-filepath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$filename"
+
+
+# get the full path of this script
+get_filepath() {
+	src="${BASH_SOURCE[0]}"
+	
+	# resolve symlinks
+	while [ -h "$src" ]; do
+		dir="$(cd -P "$(dirname "$src")" && pwd)"
+		src="$(readlink "$src")"
+		[[ $src != /* ]] && src="$dir/$src"
+	done
+
+	dir="$(cd -P "$(dirname "$src")" && pwd)"
+	echo "$dir/"
+	unset src
+	unset dir
+}
 
 
 # display command help
@@ -52,6 +69,9 @@ convertsecs() {
 	m=$(( $1 / 60 % 60 ))
 	s=$(( $1 % 60 ))
 	printf "%02d:%02d:%02d\n" $h $m $s
+	unset h
+	unset m
+	unset s
 }
 
 
@@ -93,13 +113,13 @@ countdown() {
 # for the SIGINT trap
 sigint() {
 	printf "\n%s\n" "Alright... let's take it from the top"
-	exec bash $filepath $init --interval=$interval  # replace current process with a new process of the script (start over)
+	exec bash "$(get_filepath)$filename" "$init" "--interval=$interval"  # replace current process with a new process of the script (start over)
 }
 
 
 # for the SIGQUIT trap
 sigquit() {
-	printf "\n%s\n" "LAUNCH SEQUENCE ABORT"
+	printf "\n%s\n%s\n\n" "!!!!!  LAUNCH SEQUENCE ABORT  !!!!!" "What did you go and do that for? We were having so much fun."
 	exit 131
 }
 
