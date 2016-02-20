@@ -104,7 +104,7 @@ sigquit() {
 }
 
 
-# for processing the [-i|interval] command line option
+# for processing the [-i|--interval] command line option
 args_interval() {
 	if [[ "$2" =~ ^[[:digit:]]+$ ]]; then  # if the value is a number
 		if [[ $2 -ge 1 && $2 -le 2147483648 ]]; then  # if the value is an integer from 1 to 2147483648 (32-bit signed number)
